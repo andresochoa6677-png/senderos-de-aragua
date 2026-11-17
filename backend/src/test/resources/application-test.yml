@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:senderos;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_LOWER=TRUE;CASE_INSENSITIVE_IDENTIFIERS=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+  jpa:
+    hibernate:
+      # Flyway crea el esquema con la misma migracion que prod; la validacion
+      # de tipos de Hibernate es redundante aqui y falla con H2+MODE=MySQL.
+      ddl-auto: none
+    properties:
+      hibernate:
+        session:
+          events:
+            log: QUIET
+  flyway:
+    enabled: true
+
+app:
+  cors:
+    allowed-origins: http://localhost:5173
+  base-url: http://localhost:5173
+  # Las suites de integración comparten contexto y por tanto un único
+  # RateLimiter: con el umbral por defecto (10) se agotaría entre casos.
+  # Los tests específicos de tasa límite usan su propio contexto con
+  # valores bajos vía @TestPropertySource.
+  rate-limiter:
+    max-intentos: 500
+    ventana-minutos: 10
+  limpieza:
+    dias-pendiente: 7
+  mail:
+    modo: captura
+    captura-dir: target/correo-saliente
+  password-reset:
+    log-token: false
+
+server:
+  servlet:
+    session:
+      cookie:
+        secure: false
+        http-only: true
+        same-site: lax
+
+logging:
+  level:
+    com.senderos: INFO

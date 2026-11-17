@@ -1,0 +1,56 @@
+# === Secretos y entorno local (NUNCA versionar) ===
+.env
+.env.local
+.env.*.local
+*.local.properties
+application-local.properties
+application-local.yml
+
+# === Java / Maven ===
+target/
+*.class
+*.jar
+!.mvn/wrapper/maven-wrapper.jar
+.mvn/timing.properties
+hs_err_pid*
+
+# === Node / Vite ===
+node_modules/
+dist/
+dist-ssr/
+*.local
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# === IDE / Editor ===
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# === Sistema operativo ===
+.DS_Store
+Thumbs.db
+
+# === Logs y datos locales ===
+logs/
+*.log
+docker/data/
+uploads/
+backend/correo-saliente/
+correo-saliente/
+
+# Metadatos de descarga/copia de Windows
+*:Zone.Identifier
+
+# Backups de base de datos
+backups/
+
+# Documentación interna de trabajo (no es parte del código entregable)
+docs/
+AGENTS.md
